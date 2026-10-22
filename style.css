@@ -431,3 +431,114 @@ body{scrollbar-gutter:stable;overflow-x:hidden}
 .page[data-page="sobre"]{overflow-x:clip}
 .about-visual-stack{min-width:0}
 .about-visual img{max-width:100%;height:auto}
+/* ==========================================
+   CORREÇÃO DEFINITIVA DO HERO NO MOBILE
+   Fundo preenchendo toda a altura da tela
+   ========================================== */
+
+@media (max-width: 900px) {
+
+  html,
+  body {
+    min-height: 100%;
+    background: #020b13;
+  }
+
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  main {
+    flex: 1 0 auto;
+    min-height: calc(100dvh - 66px);
+  }
+
+  /* Página inicial ocupa o espaço disponível */
+  .page[data-page="inicio"] {
+    min-height: calc(100dvh - 66px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Hero expande verticalmente */
+  .page[data-page="inicio"] .hero {
+    flex: 1 0 auto;
+    min-height: calc(100dvh - 66px);
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    background: #020b13;
+    border-bottom: none;
+  }
+
+  /* Imagem permanece cobrindo toda a seção */
+  .page[data-page="inicio"] .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('hero-bg.jpg');
+    background-size: cover;
+    background-position: 65% center;
+    background-repeat: no-repeat;
+    animation: none;
+  }
+
+  /* Transição escura para integrar o texto ao fundo */
+  .page[data-page="inicio"] .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(2, 11, 19, .30) 0%,
+      rgba(2, 11, 19, .48) 45%,
+      rgba(2, 11, 19, .82) 100%
+    );
+    pointer-events: none;
+  }
+
+  .page[data-page="inicio"] .hero .hero-content {
+    width: calc(100% - 40px);
+    margin-inline: auto;
+    padding: 50px 0;
+    min-height: calc(100dvh - 66px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page[data-page="inicio"] .hero-left {
+    max-width: 100%;
+  }
+}
+
+/* Telas pequenas */
+@media (max-width: 480px) {
+  .page[data-page="inicio"] .hero {
+    min-height: calc(100dvh - 66px);
+  }
+
+  .page[data-page="inicio"] .hero .hero-content {
+    width: calc(100% - 36px);
+    min-height: calc(100dvh - 66px);
+    padding: 40px 0;
+  }
+
+  .page[data-page="inicio"] .hero-left h1 {
+    font-size: clamp(38px, 10vw, 48px);
+    line-height: .98;
+    letter-spacing: -1.8px;
+  }
+
+  .page[data-page="inicio"] .hero-left p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .page[data-page="inicio"] .hero-actions {
+    gap: 10px;
+  }
+}
