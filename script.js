@@ -11,7 +11,11 @@ function storageSet(key, value) {
   try { window.localStorage.setItem(key, value); } catch (error) {}
 }
 
-const CONFIG = { whatsapp: storageGet("+5521975593311"), nomeEmpresa: "Ybyrapytanga" };
+const CONFIG = {
+  whatsapp: storageGet("yby_whatsapp", "5521975593311"),
+  email: storageGet("yby_email", "ybyrapytanga@gmail.com"),
+  nomeEmpresa: "Ybyrapytanga"
+};
 const PRODUCTS = Array.isArray(window.PRODUCTS) ? window.PRODUCTS : [];
 
 function loadSavedCart() {
